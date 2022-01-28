@@ -1,0 +1,21 @@
+*) Nginx Feature:
+    => Event based Reverse Proxy Server
+        -> reverse proxy server is the type of server that retrive the resources from the server on behalf of client and they usually offloads the number fo requests to the actual web server
+    -> Modular Desing
+        -> it support different type of module
+        -> you can add 62 module which are build in nginx
+            -> HTTPD_SSL
+            -> HTTPD_ZIP_static
+            -> MAIL_IMAP_MODULE
+            -> MAIL_SMTP_MODULE
+            -> Many other modules
+    -> Asynchronous web Server
+    -> Reverse Proxy and Load Balancing Capability
+        -> nginx analyze the request based on the url and decide how to proceed the request, it doesn't make a decision based on os 
+    -> Few Resource Requirement and consumption
+    -> Multiple Protocol Support: HTTP(S), WebSocket, IMP, POP3, SMTP
+    -> HTTP Video Streaming Using MP4/FLV/HDS/HLS
+    -> SSL Termination
+    -> HTTP Live streaming & Videos on demand
+    -> Streaming -- (Progressive/ Asaptive/ Dynamic)
+

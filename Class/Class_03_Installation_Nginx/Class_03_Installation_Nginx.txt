@@ -1,0 +1,60 @@
+*) Nginx Install Type:
+    -> Yum Based
+    -> Source code compilation with Nginx Tar ball
+
+*) Prepare Your Ngin Testing Environment:
+    => Virtualization Software
+        -> VmWare Workstation
+        -> Oracle VirtualBox
+    => Operatinve System/ISO
+        -> Centos (linux os) (http://www.centos.org/download) -> then install:
+            -> Text based browser: yam install lynx
+            -> Vim Editor: Yum install vim
+            -> Text based downloader: yam install wget
+        -> Ubuntu server (linux os) (https://ubuntu.com/download/server) -> then install:
+            -> Text based browser: sudo apt-get install lynx
+            -> Vim Editor: sudo apt-get install vim
+            -> Text based downloader: sudo apt-get install wget
+
+
+-> ubuntu server os:
+    -> enpOs3 : eth
+    -> DHCPv4 : 10.0.2.15/24
+    
+    => profile setup:
+        -> name: Roman Ojha
+        -> server name: romanserver
+        -> pick username: razzroman
+        -> password: ubuntuserver
+
+
+*) Install step:
+    => Yam Based
+        -> install linux server os in VM
+        -> sudo poweroff (to shutdown the os)
+        -> sudo apt-get install lynx
+        -> sudo apt-get install vim
+        -> sudo apt-get install wget
+        -> sudo apt install nginx 
+            -> sudo systemctl status nginx (to see the nginx status)
+            -> service nginx status (to see is nginx is running or not)
+            -> systemctl status nginx (to see the nginx status)
+            -> nginx -v (to see the version of the nginx)
+            -> service nginx start (to start the server)
+            -> systemctl start nginx (to start the server)
+            -> service nginx stop (to stop the server)
+            -> systemctl stop nginx (to stop the server)
+            -> lynx http://localhost/ (to see in the browser)
+        -> ip addr (to see the os ip)
+        -> sudo systemctl status firewalld
+        -> systemctl stop firewalld
+        -> sudo ufw app list (to get alising of the application profiles)
+        -> sudo ufw allow 'Nginx HTTP' (to allow http)
+        -> sudo ufw enable (if status: inactive)
+        -> sudo ufw status
+        -> to access the server from the host when we are in VM
+            -> to see how to do that you can search in youtube:
+                -> How to access server running in VirtualBox from the host
+        -> open <ip> on windows browser
+    => Minimum dependencies to compile Nginx Tar ball
+        -> see documentation or watch video
