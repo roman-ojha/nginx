@@ -29,7 +29,7 @@
 
 
 *) Install step:
-    => Yam Based
+    => On Ubuntu server OS
         -> install linux server os in VM
         -> sudo poweroff (to shutdown the os)
         -> sudo apt-get install lynx

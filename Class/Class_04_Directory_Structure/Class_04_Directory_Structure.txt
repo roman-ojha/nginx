@@ -1,0 +1,11 @@
+*) Directory Structure:
+    -> Binary/executable file
+        -> /usr/sbin
+    -> Configuration Directory/Files
+        -> /etc/nginx
+    -> Add on or Plugin Files
+    -> Data or Document Directory/Files
+        -> /usr/share/nginx
+    -> Log Directory/Files
+        -> /var/log/nginx
+        -> whatever activity that is happening should go into this directory
