@@ -1,0 +1,20 @@
+*) Nginx configuration Files reading
+    -> Nginx configuration files is noting else, but a set of directive and command defined to fulfill a particular context
+    -> Nginx contexts types are main, event, http, server, mail, stream etc...
+    -> Nginx contexts are usually named before curly bracket block and inside curly required comand and directives to fulfill respective context or sections required configurations
+    -> Whole body of configuration is usually reffered as a main context.
+
+*) Command:
+    -> :q (to quit vim in linux)
+    -> :q!
+    -> ps aux | grep -i nginx (to find information about running processes)
+    -> systemctl restart nginx
+
+*) to read the configuration file on yam based installation
+    -> cd /etc/nginx
+    -> vim nginx.conf
+        -> user <with which user we want to run our os porcesses>; (we can define number of worker processes here)
+        -> worker _processes <number of worker processes>;
+        -> error_log <what ever error nginx find that will go to this directory> warn (warn is the log level);
+        -> pid (process name) <nginx store process id under this directory because when we stop the process then os will finds out the process id number to kill it> (cat /var/run/nginx.pid) (we will get the master process pid because when we will kill the process all the worker process also get kill)
+        -> 
