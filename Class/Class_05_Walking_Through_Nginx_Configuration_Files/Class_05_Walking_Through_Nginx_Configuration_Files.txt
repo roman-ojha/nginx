@@ -14,7 +14,30 @@
     -> cd /etc/nginx
     -> vim nginx.conf
         -> user <with which user we want to run our os porcesses>; (we can define number of worker processes here)
+
         -> worker _processes <number of worker processes>;
+
         -> error_log <what ever error nginx find that will go to this directory> warn (warn is the log level);
+
         -> pid (process name) <nginx store process id under this directory because when we stop the process then os will finds out the process id number to kill it> (cat /var/run/nginx.pid) (we will get the master process pid because when we will kill the process all the worker process also get kill)
-        -> 
+
+        -> events{
+            worker_connections <max_request_it_will_accept>
+        }
+
+        -> http{
+            include /etc/nginx/mime.types; (inside the 'mime.type' all of the files that are supported is defined)
+
+            default_type application/octet-stream; ()
+
+            log_format main (whatever log will generate that will have given formate parameter, This would be the log formate for 'access_log' not 'error log')
+            
+            access_log /var/log/nginx/access.log main(access log follow 'main' format);
+
+            sendfile on; (if we want to send some file then that is on)
+            tcp_nopush on;
+
+            keepalive_timeout 65;(if user is connected to our session then session will not timeout for atleast 65 sec)
+
+            include /etc/nginx/conf.d/*.conf; (whatever conf file located on 'conf.d' that will be a part of http)
+        }

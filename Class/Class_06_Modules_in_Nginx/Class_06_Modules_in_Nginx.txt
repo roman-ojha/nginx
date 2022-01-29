@@ -1,0 +1,11 @@
+*) What is module? What is it's structure?
+    -> module is a peace of code that will give us a spacific features,
+    -> types of Modules:
+        a) Core
+        b) Event 
+        c) HTTP
+        d) Mail
+        e) Stream
+        f) Third party Modules
+    
+    -> How Module works?
