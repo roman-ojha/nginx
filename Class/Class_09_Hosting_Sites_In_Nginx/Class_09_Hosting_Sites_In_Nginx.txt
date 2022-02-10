@@ -1,0 +1,63 @@
+*) Types of Websites hosting in Nginx
+    => Website hosting using domain names
+    => Website hosting using IP addresses
+    => Websites hosting using ports
+    => Load different configuration based on location directive
+    => Handling common files using pattern matching
+    => Avoid regular expression matching
+    => Exact modifiers
+    => location context special cases - try_file, rewrite
+
+*) test websites in :
+    1) Web Url: http://razzroman1.com
+        under: /APPS/website1/index.html
+    2) Web Url: http://razzroman2.com
+        under: /APPS/website2/index.html
+    3) Web Url: http://192.168.31.250
+        under: /APPS/website3/index.html
+    4) Web Url: http://razzroman1.com:81
+        under: /APPS/website4/index.html
+
+    -> sudo mkdir APPS
+    -> cd APPS
+    -> sudo mkdir website1
+        -> cd website1
+        -> sudo touch index.html
+        -> sudo vim index.html
+            -> write (:w) and save, exist (:x) 
+    -> sudo mkdir website2
+        -> same as previous
+    -> sudo mkdir website3
+        -> same as previous
+    -> sudo mkdir website4
+        -> same as previous
+
+    -> cd /etc/nginx/conf.d
+    -> sudo touch ipbase.conf
+    -> sudo touch portbase.conf
+*) Website Hosting sites in Nginx using Domain Name:
+    -> sudo touch razzroman1.conf
+        -> sudo vim razzroman1.conf
+            -> server{
+                listen 80;
+                server_name razzroman1.com;
+
+                location / {
+                    root /APPS/website1;
+                    index index.html index.htm;
+                }
+
+                error_page  500 502 503 504 /50x.html
+                location = /50x.html{
+                    root /usr/share/nginx/html;
+                }
+            }
+    -> run the nginx server or restart it
+    -> sudo touch razzroman2.conf
+            -> inside /nignx/nginx.conf
+                -> http{
+                    include /etc/nginx/conf.d/*.conf;
+                }
+            -> here it had already include all those config file in main nginx.conf
+    
+

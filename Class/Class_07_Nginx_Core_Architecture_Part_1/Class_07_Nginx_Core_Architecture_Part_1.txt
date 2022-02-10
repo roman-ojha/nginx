@@ -1,0 +1,4 @@
+=> Number of worker processes recomended to set in the server is the number of core in processer that we have inside server computer
+=> 2 Core processer then 2 worker processer
+    
+    -> ps aux | grep nginx (to see number of process)

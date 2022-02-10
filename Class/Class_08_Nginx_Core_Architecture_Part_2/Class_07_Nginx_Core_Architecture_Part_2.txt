@@ -1,0 +1,10 @@
+*) State Machine:
+    => Set of instructions that tells you how to handle the request
+    => State Machine Types:
+        * Http state
+        * Stream (TCP Traffic)
+        * Main (POP3, SMTP, IMAP)
+        * Etc..
+    => Processing HTTP request is complicated process, and it differes the way of hadling by different WEB server applications
+    => IIS and Apache wait for creating new thread untile client request complete
+    => Nignx don't wait until request complete for create process of new thread.
