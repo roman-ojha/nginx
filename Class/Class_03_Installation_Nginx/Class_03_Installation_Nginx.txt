@@ -2,11 +2,11 @@
     -> Yum Based
     -> Source code compilation with Nginx Tar ball
 
-*) Prepare Your Ngin Testing Environment:
+*) Prepare Your Nginx Testing Environment:
     => Virtualization Software
         -> VmWare Workstation
         -> Oracle VirtualBox
-    => Operatinve System/ISO
+    => Operating System/ISO
         -> Centos (linux os) (http://www.centos.org/download) -> then install:
             -> Text based browser: yam install lynx
             -> Vim Editor: Yum install vim
@@ -27,11 +27,14 @@
         -> pick username: razzroman
         -> password: ubuntuserver
 
+*) NOTE: for WSL:
+    -> sudo service nginx start (to start nginx)
 
 *) Install step:
     => On Ubuntu server OS
         -> install linux server os in VM
         -> sudo poweroff (to shutdown the os)
+        -> sudo apt update
         -> sudo apt-get install lynx
         -> sudo apt-get install vim
         -> sudo apt-get install wget
@@ -40,11 +43,12 @@
             -> service nginx status (to see is nginx is running or not)
             -> systemctl status nginx (to see the nginx status)
             -> nginx -v (to see the version of the nginx)
-            -> service nginx start (to start the server)
+            -> sudo service nginx start (to start the server)
             -> systemctl start nginx (to start the server)
             -> service nginx stop (to stop the server)
             -> systemctl stop nginx (to stop the server)
             -> lynx http://localhost/ (to see in the browser)
+            -> sudo service nginx restart
         -> ip addr (to see the os ip)
         -> sudo systemctl status firewalld
         -> systemctl stop firewalld

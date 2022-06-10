@@ -39,7 +39,7 @@
     -> sudo touch razzroman1.conf
         -> sudo vim razzroman1.conf
             -> server{
-                listen 80;
+                listen 81;
                 server_name razzroman1.com;
 
                 location / {

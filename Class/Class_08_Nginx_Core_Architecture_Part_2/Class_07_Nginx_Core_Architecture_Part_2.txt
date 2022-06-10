@@ -5,6 +5,6 @@
         * Stream (TCP Traffic)
         * Main (POP3, SMTP, IMAP)
         * Etc..
-    => Processing HTTP request is complicated process, and it differes the way of hadling by different WEB server applications
+    => Processing HTTP request is complicated process, and it differs the way of handling by different WEB server applications
     => IIS and Apache wait for creating new thread untile client request complete
-    => Nignx don't wait until request complete for create process of new thread.
+    => Nginx don't wait until request complete for create process of new thread.

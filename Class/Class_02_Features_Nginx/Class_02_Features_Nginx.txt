@@ -1,7 +1,7 @@
 *) Nginx Feature:
     => Event based Reverse Proxy Server
-        -> reverse proxy server is the type of server that retrive the resources from the server on behalf of client and they usually offloads the number fo requests to the actual web server
-    -> Modular Desing
+        -> reverse proxy server is the type of server that retrieve the resources from the server on behalf of client and they usually offloads the number of requests to the actual web server
+    -> Modular Design
         -> it support different type of module
         -> you can add 62 module which are build in nginx
             -> HTTPD_SSL

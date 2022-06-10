@@ -1,5 +1,5 @@
 *) What is Nginx?
-    -> Nginx is the open source software for the web servicing, it is use for reverse proxying, caching, Load balancing, mdeia streaming, and more then that
+    -> Nginx is the open source software for the web servicing, it is use for reverse proxy, caching, Load balancing, media streaming, and more then that
     -> it also use for the proxy server which handle the email services like POP3, IMAP, SMTP services
     -> NginX web server with maximum performance and stability
 
@@ -8,7 +8,7 @@
         a) It's Fast
         b) It can Accelerate You Application
         c) It Has a Straightforward Load Balancer
-        d) It Scals Well
+        d) It Scale Well
         e) Upgrade on fly
         f) It's Affordable to Install and Maintain
         g) It's Easy to use
