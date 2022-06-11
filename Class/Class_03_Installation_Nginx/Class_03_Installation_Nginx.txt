@@ -51,6 +51,7 @@
             -> curl http://localhost/ (you can see html content of site)
             -> sudo service nginx restart
         -> ip addr (to see the os ip)
+            -> NOTE: one of the ip is being used by default nginx page
         -> sudo systemctl status firewalld
         -> systemctl stop firewalld
         -> sudo ufw app list (to get aliasing of the application profiles)

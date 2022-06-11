@@ -63,5 +63,29 @@
                     include /etc/nginx/conf.d/*.conf;
                 }
             -> here it had already include all those config file in main nginx.conf
+
+*) Website Hosting sites in Nginx using ipBase:
+    -> NOTE: First look for ip that are available in you OS machine:
+        -> ip addr
+            -> inet <ip_address>/20 brd 172.24.255.255 scope global eth0
+                -> The IP that is available in you machine put the same ip address for server_name name
+        -> server{
+                listen 192.168.31.250:80;
+                # here on ipbase we are again listening on port 80
+                server_name 192.168.31.250;
+                # and also server name need to be the same ip
+
+                location / {
+                    # location of html file
+                    root /APPS/website1;
+                    index index.html index.htm;
+                }
+
+                error_page  500 502 503 504 /50x.html;
+                location = /50x.html{
+                    # if error occur then error goes to
+                    root /usr/share/nginx/html;
+                }
+            }
     
 
