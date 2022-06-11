@@ -1,8 +1,8 @@
 *) Nginx configuration Files reading
     -> Nginx configuration files is noting else, but a set of directive and command defined to fulfill a particular context
     -> Nginx contexts types are main, event, http, server, mail, stream etc...
-    -> Nginx contexts are usually named before curly bracket block and inside curly required comand and directives to fulfill respective context or sections required configurations
-    -> Whole body of configuration is usually reffered as a main context.
+    -> Nginx contexts are usually named before curly bracket block and inside curly required command and directives to fulfill respective context or sections required configurations
+    -> Whole body of configuration is usually refereed as a main context.
 
 *) Command:
     -> :q (to quit vim in linux)
@@ -13,7 +13,7 @@
 *) to read the configuration file on yam based installation
     -> cd /etc/nginx
     -> vim nginx.conf
-        -> user <with which user we want to run our os porcesses>; (we can define number of worker processes here)
+        -> user <with which user we want to run our os processes>; (we can define number of worker processes here)
 
         -> worker _processes <number of worker processes>;
 

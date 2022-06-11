@@ -41,18 +41,19 @@
         -> sudo apt install nginx 
             -> sudo systemctl status nginx (to see the nginx status)
             -> service nginx status (to see is nginx is running or not)
-            -> systemctl status nginx (to see the nginx status)
+            -> systemctl status nginx (to see the nginx status, for yam based)
             -> nginx -v (to see the version of the nginx)
             -> sudo service nginx start (to start the server)
             -> systemctl start nginx (to start the server)
             -> service nginx stop (to stop the server)
             -> systemctl stop nginx (to stop the server)
             -> lynx http://localhost/ (to see in the browser)
+            -> curl http://localhost/ (you can see html content of site)
             -> sudo service nginx restart
         -> ip addr (to see the os ip)
         -> sudo systemctl status firewalld
         -> systemctl stop firewalld
-        -> sudo ufw app list (to get alising of the application profiles)
+        -> sudo ufw app list (to get aliasing of the application profiles)
         -> sudo ufw allow 'Nginx HTTP' (to allow http)
         -> sudo ufw enable (if status: inactive)
         -> sudo ufw status

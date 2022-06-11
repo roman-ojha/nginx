@@ -35,25 +35,29 @@
     -> cd /etc/nginx/conf.d
     -> sudo touch ipbase.conf
     -> sudo touch portbase.conf
-*) Website Hosting sites in Nginx using Domain Name:
     -> sudo touch razzroman1.conf
+    -> sudo touch razzroman2.conf
+    -> NOTE: main config file: /etc/nginx/nginx.conf there we have:
+        -> include /etc/nginx/conf.d/*.conf; (it means that, if we make any file under this included directory then that will be consider by nginx)
+*) Website Hosting sites in Nginx using Domain Name:
         -> sudo vim razzroman1.conf
             -> server{
-                listen 81;
+                listen 80;
                 server_name razzroman1.com;
 
                 location / {
+                    # location of html file
                     root /APPS/website1;
                     index index.html index.htm;
                 }
 
                 error_page  500 502 503 504 /50x.html
                 location = /50x.html{
+                    # if error occur then error goes to
                     root /usr/share/nginx/html;
                 }
             }
     -> run the nginx server or restart it
-    -> sudo touch razzroman2.conf
             -> inside /nignx/nginx.conf
                 -> http{
                     include /etc/nginx/conf.d/*.conf;
