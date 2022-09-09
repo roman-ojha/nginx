@@ -1,0 +1,5 @@
+*) For windows Nginx:
+    -> nginx -s stop	(Rapid shutdown)
+    -> nginx -s quit	(Graceful shutdown)
+    -> nginx -s reload	(Changing configuration, starting new worker processes with a new configuration, graceful shutdown of old worker processes)
+    -> nginx -s reopen	(Reopening log files)
