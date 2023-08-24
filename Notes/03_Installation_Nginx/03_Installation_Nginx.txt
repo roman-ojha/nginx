@@ -35,6 +35,7 @@
         -> install linux server os in VM
         -> sudo poweroff (to shutdown the os)
         -> sudo apt update
+        -> sudo apt upgrade -y
         -> sudo apt-get install lynx
         -> sudo apt-get install vim
         -> sudo apt-get install wget
@@ -52,6 +53,7 @@
             -> sudo service nginx restart
         -> ip addr (to see the os ip)
             -> NOTE: one of the ip is being used by default nginx page
+        -> ifconfig (to see detail of os ip)
         -> sudo systemctl status firewalld
         -> systemctl stop firewalld
         -> sudo ufw app list (to get aliasing of the application profiles)
