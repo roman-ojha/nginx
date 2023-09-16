@@ -87,5 +87,6 @@
                     root /usr/share/nginx/html;
                 }
             }
-    
 
+*) Website Hosting site in Nginx using Port base:
+    -> https://youtu.be/D5grhfkjjXE?t=5703

@@ -1,0 +1,7 @@
+*) Using Veriable:
+	-> https://docs.nginx.com/nginx/admin-guide/web-server/web-server/#using-variables
+	-> You can use variables in the configuration file to have NGINX Plus process requests differently depending on defined circumstances. Variables are named values that are calculated at runtime and are used as parameters to directives. A variable is denoted by the $ (dollar) sign at the beginning of its name. Variables defi
+
+	-> Predefined variables: https://nginx.org/en/docs/http/ngx_http_core_module.html#variables
+	->  you can define custom variables using the set, map, and geo directives.
+	-> . Most variables are computed at runtime and contain information related to a specific request. For example, '$remote_addr' contains the client IP address and $uri holds the current URI value.

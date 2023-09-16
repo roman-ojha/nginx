@@ -1,0 +1,25 @@
+*) Setting Up virtual Servers:
+	-> The NGINX Plus configuration file must include at least one server directive to define a virtual server. When NGINX Plus processes a request, it first selects the virtual server that will serve the request.
+	-> A virtual server is defined by a 'server' directive in the 'http' context, for example:
+		http {
+		    server {
+		        # Server configuration
+		    }
+		}
+
+	-> It is possible to add multiple server directives into the http context to define multiple virtual servers.
+	-> The server configuration block usually includes a 'listen' directive to specify the IP address and port (or Unix domain socket and path) on which the server listens for requests. Both IPv4 and IPv6 addresses are accepted; enclose IPv6 addresses in square brackets.
+	-> The example below shows configuration of a server that listens on IP address 127.0.0.1 and port 8080:
+		server {
+		    listen 127.0.0.1:8080;
+		    # Additional server configuration
+		}
+
+	-> If there are several servers that match the IP address and port of the request, NGINX Plus tests the request’s Host header field against the server_name directives in the server blocks. The parameter to server_name can be a full (exact) name, a wildcard, or a regular expression. A wildcard is a character string that includes the asterisk (*) at its beginning, end, or both; the asterisk matches any sequence of characters. NGINX Plus uses the Perl syntax for regular expressions; precede them with the tilde (~). This example illustrates an exact name.
+
+		server {
+		    listen      80;
+		    server_name example.org www.example.org;
+		    #...
+		}
+

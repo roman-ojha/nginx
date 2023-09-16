@@ -1,0 +1,16 @@
+*) Rewriting HTTP Response:
+	-> Sometimes you need to rewrite or change the content in an HTTP response, substituting one string for another. You can use the sub_filter directive to define the rewrite to apply. The directive supports variables and chains of substitutions, making more complex changes possible.
+
+	-> For example, you can change absolute links that refer to a server other than the proxy:
+		location / {
+		    sub_filter      /blog/ /blog-staging/;
+		    sub_filter_once off;
+		}
+
+	-> Another example changes the scheme from http:// to https:// and replaces the localhost address with the hostname from the request header field. The sub_filter_once directive tells NGINX to apply sub_filter directives consecutively within a location:
+		location / {
+		    sub_filter     'href="http://127.0.0.1:8080/'    'href="https://$host/';
+		    sub_filter     'img src="http://127.0.0.1:8080/' 'img src="https://$host/';
+		    sub_filter_once on;
+		}
+	-> Note that the part of the response already modified with the sub_filter is not replaced again if another sub_filter match occurs.
