@@ -1,8 +1,22 @@
+-> https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/
+
 *) Nginx configuration Files reading
     -> Nginx configuration files is noting else, but a set of directive and command defined to fulfill a particular context
     -> Nginx contexts types are main, event, http, server, mail, stream etc...
     -> Nginx contexts are usually named before curly bracket block and inside curly required command and directives to fulfill respective context or sections required configurations
     -> Whole body of configuration is usually refereed as a main context.
+
+*) Feature Specific Configuration File:
+    -> https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/#feature-specific-configuration-files
+    -> To make the configuration easier to maintain, we recommend that you split it into a set of feature‑specific files stored in the /etc/nginx/conf.d directory and use the include directive in the main nginx.conf file to reference the contents of the feature‑specific files.
+
+*) Context:
+    -> A few top‑level directives, referred to as contexts, group together the directives that apply to different traffic types:
+        -> events – General connection processing
+        -> http – HTTP traffic
+        -> mail – Mail traffic
+        -> stream – TCP and UDP traffic
+    -> Directives placed outside of these contexts are said to be in the main context.
 
 *) Command:
     -> :q (to quit vim in linux)
@@ -41,3 +55,39 @@
 
             include /etc/nginx/conf.d/*.conf; (whatever conf file located on 'conf.d' that will be a part of http)
         }
+
+*) virtual Servers:
+    -> https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/#virtual-servers
+    user nobody; # a directive in the 'main' context
+
+        events {
+            # configuration of connection processing
+        }
+
+        http {
+            # Configuration specific to HTTP and affecting all virtual servers  
+
+            server {
+                # configuration of HTTP virtual server 1       
+                location /one {
+                    # configuration for processing URIs starting with '/one'
+                }
+                location /two {
+                    # configuration for processing URIs starting with '/two'
+                }
+            } 
+            
+            server {
+                # configuration of HTTP virtual server 2
+            }
+        }
+
+        stream {
+            # Configuration specific to TCP/UDP and affecting all virtual servers
+            server {
+                # configuration of TCP virtual server 1 
+            }
+        }
+
+*) Inheritance:
+    -> https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/#inheritance
