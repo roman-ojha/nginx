@@ -1,0 +1,2 @@
+*) Install Nginx as service in windows:
+	-> https://youtu.be/OW9WMqo-mUw

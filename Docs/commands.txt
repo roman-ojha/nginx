@@ -3,3 +3,5 @@
     -> nginx -s quit	(Graceful shutdown)
     -> nginx -s reload	(Changing configuration, starting new worker processes with a new configuration, graceful shutdown of old worker processes)
     -> nginx -s reopen	(Reopening log files)
+    -> services nginx status (To see status of nginx)
+    -> ps aux | grep nginx (to see number of process)
