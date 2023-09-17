@@ -1,0 +1,13 @@
+*) Add NGINX Process in Systemd Services to make the WebServer Resilient.
+    1. nginx init services file.
+      https://www.nginx.com/resources/wiki/start/topics/examples/systemd/
+    2. start service
+      systemctl start nginx
+    3. stop service
+      systemctl stop nginx
+    4. restart-service
+      systemctl restart nginx
+    5. check service status
+      systemctl status nginx
+    6. enable service, auto-start on boot
+      systemctl enable nginx

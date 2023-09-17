@@ -1,0 +1,22 @@
+*) Install NGINX for ubuntu
+  -> sudo apt update
+  -> sudo apt install nginx
+  -> ps aux | grep nginx (we can check where nginx process is running or not)
+    root        1385  0.0  0.0  51216  1512 ?        Ss   Sep16   0:00 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+    www-data    1387  0.0  0.1  51780  5184 ?        S    Sep16   0:00 nginx: worker process
+    razzrom+    5416  0.0  0.0   8168   720 pts/0    R+   03:37   0:00 grep --color=auto nginx
+    -> here we can see that there is one master process and one worker processing
+    -> here nginx has create 1 master process an 1 worker process
+
+  *) Check Access logs and error logs:
+    -> logs are provided in '/var/log/nginx/*.logs'
+    -> cd /var/log/nginx
+    -> tail -f * (see all the file inside this directory which are logs files)
+      -> here we can see on the first request we will get 200 status code response but second time we will get 304 status code response because 304 means Not modified client redirection resonse means it is serving static data from the cache.
+
+*) Install NGINX for CentOS
+  -> https://www.youtube.com/watch?v=NwijBVfiK_o&t=2724s
+
+*) Install NGINX from source code
+  -> https://youtu.be/NwijBVfiK_o?t=3073
+  -> https://nginx.org/en/docs/configure.html
