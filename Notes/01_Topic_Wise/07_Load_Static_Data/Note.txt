@@ -1,0 +1,105 @@
+*) Load Static Page:
+  -> Inside './project' we have include the project which is a static content project
+  -> We will now upload this './project/' folder into the VPS machine:
+    -> scp <path_where_file_exist> <user_name_of_server>@<ip_address_of_server>:<path_where_you_want_to_upload_given_folder_and_files>
+      -> (Upload file)
+      -> (NOTE try to upload on user directory folder '~' because in other you might will get permission deined)
+    -> scp -r <path_where_folder_exist> <user_name_of_server>@<ip_address_of_server>:<path_where_you_want_to_upload_given_folder_and_files>
+      -> (Upload Folder)
+    -> scp -r -i <path_to_ssh_key> <path_where_folder_exist> <user_name_of_server>@<ip_address_of_server>:<path_where_you_want_to_upload_given_folder_and_files>
+      -> (Upload with SSH)
+
+    -> EX: scp -r -i .\.ssh\gcp_personal_razzroman98 D:\Programming\nginx\Notes\01_Topic_Wise\07_Create_Virtual_Host_in_Nginx\project\ razzroman98@<public_ip_of_machine>:~/app
+    -> Now we will move ~/app folder into home '/app' folder
+      
+  -> Now we will do configuration of Nginx:
+    -> cd /etc/nginx
+    -> First we will backup the default configuration file:
+      -> mv nginx.conf nginx_backup.conf
+      -> sudo cp nginx_backup.conf nginx.conf
+
+    -> Now we will remove everthing and put bellow code inside nginx.conf file:
+        events {
+
+        }
+
+        http {
+
+                server{
+
+                }
+
+        }
+
+    -> Now we will configure on our own way:
+      events {
+
+        }
+
+        http {
+
+                server{
+                        listen 80; # we will listen on port 80
+                        server_name 34.68.170.207; # define the ip or domain of your server or machine
+
+                        # now we will define the root where in which file system we will read the static content
+                        root /app/;
+
+                }
+
+        }
+    -> Now we will reload the configuration with 'nginx -s reload' or 'systemctl reload nginx'
+    -> now we will check the logs:
+      -> cat /var/log/nginx/*
+    -> Or we can tail the logs to see the logs on runtime:
+      -> tail -f /var/log/nginx/*
+
+    -> If we will try to access the nginx on public ip from the browser we will not be able to see css, js file only html content have rendered
+      -> On the access log we can see that all the assets are getting uploaded:
+        113.199.226.133 - - [17/Sep/2023:06:04:39 +0000] "GET /assets/css/font-awesome.min.css HTTP/1.1" 200 7868 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.31"
+      -> But we are not being able to see these
+
+      -> Now let's try to check whethere css is loaded or not:
+        -> curl -I http://<public_ip_of_machine>/assets/css/bootsnav.css
+        -> We will get:
+          HTTP/1.1 200 OK
+          Server: nginx/1.18.0 (Ubuntu)
+          Date: Sun, 17 Sep 2023 06:16:28 GMT
+          Content-Type: text/plain
+          Content-Length: 35191
+          Last-Modified: Sun, 17 Sep 2023 05:25:29 GMT
+          Connection: keep-alive
+          ETag: "65068dc9-8977"
+          Accept-Ranges: bytes
+            
+          -> Here we can see that we are getting 200 Ok response
+          -> But we can see that on 'Content-Type' we are getting 'text/plain' but in our case it is css file
+          -> So Nginx is not able to resolve the file extension of that perticular file
+
+      -> So to serve other file types like css and js we will add another code in configuration under 'http' context:
+          types{
+                text/html html; # defining the type of file that we are serving
+                text/css css;
+          }
+          -> Now we will run this command: curl -I http://<public_id_of_macine>/assets/css/bootsnav.css
+            HTTP/1.1 200 OK
+            Server: nginx/1.18.0 (Ubuntu)
+            Date: Sun, 17 Sep 2023 06:25:58 GMT
+            Content-Type: text/css
+            Content-Length: 35191
+            Last-Modified: Sun, 17 Sep 2023 05:25:29 GMT
+            Connection: keep-alive
+            ETag: "65068dc9-8977"
+            Accept-Ranges: bytes
+          -> Here we can see that it is able to understand the css type now
+    
+      -> After doing this also we will not be able to sell all the css files get reflicted inside page because we have subdirectory structure where we store the css & js files
+      -> So Inside the Nginx we have subdirectory model so, if you are defining something inside the subdirectories then you need to define that specific sub directories inside the configuration file
+      -> Let's check the the multiple type instruction that nginx have already written inside 'mime.types':
+        -> cat /etc/nginx/mime.types
+        -> So using this command we will be able to see all the type that add been define inside this file:
+        -> now rathen then including all the types using 'types { }' inside 'nginx.conf' file we will  just include the 'mime.types' file inside configuration file
+      -> So we will define the subdirectory structure inside configuration file:
+        -> include mime.types;
+
+      -> Defined the full configuration done inside this example on './nginx.conf'
