@@ -1,5 +1,6 @@
 -> services nginx status (To see status of nginx)
 -> ps aux | grep nginx (to see number of process)
+-> nginx -t (check wheter the configuration that we did is valid or not)
 
 *) Controlling NGINX Process as Rungtime using Signal:
     -> https://docs.nginx.com/nginx/admin-guide/basic-functionality/runtime-control/    

@@ -1,2 +1,8 @@
 *) Install Nginx as service in windows:
 	-> https://youtu.be/OW9WMqo-mUw
+
+*) Different between restart and reload command:
+	-> systemctl reload nginx:
+		-> reload command will referesh the configuration on your running nginx process
+	-> systemctl restart nginx:
+		-> It will first stop the nginx and the start it and in that case if configuration file have some error then you mignt not be able to start the nginx process which may kill you web server.
