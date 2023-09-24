@@ -1,0 +1,44 @@
+*) Variable:
+  -> NGINX configuration can hold the variable and NGINX variable can hold the String Value. 
+  ➤ Set directive is used to assign variable in NGINX. 
+  set $a "hello world";  
+  ➤ User can put conditional statements on basis of variables. 
+  ➤ Few Important inbuilt variables: 
+    ➤ $args - List of arguments on the request line. 
+    ➤ $body_bytes_sent - Number of bytes sent to the client. 
+    ➤ $bytes_received - Number of bytes received from a client.
+    ➤ $connection_requests - Current number of requests made via connection. 
+    ➤ $date_local - Current time in the local time zone.
+    ➤ $hostname - Host name . 
+    ➤ $nginx_version - Shows the nginx version.
+
+
+*) Demo:
+  events {
+
+  }
+
+  http {
+          include mime.types;
+
+          server{
+                  listen 80;
+                  server_name 34.68.170.207;
+
+                  root /app/;
+                  
+                  # condition
+                  if ( $arg_name = 'roman-ojha' ){
+                          # here we are checking for argument 'name' and if the argument 'name' value is 'roman-ojha' then it will return the message with status code
+                          # now in any path with given args 'name' have the value 'roman-ojha' the we will return bellow line
+                          return 200 "Hello roman ojha";
+                  }
+
+                  location /find {
+                          return 200 "$hostname \n $args \n $connection_requests \n $nginx_version";
+                          # we will return the string from this context where we will use all the default variable that is provided by nginx
+                  }
+          }
+
+  }
+  -> Now if we will go to '/find?name=roman-ojha' then 'name=roman-ojha' is the args

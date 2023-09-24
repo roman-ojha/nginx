@@ -8,3 +8,7 @@
     -> nginx -s quit    (Graceful shutdown)
     -> nginx -s reload  (Changing configuration, starting new worker processes with a new configuration, graceful shutdown of old worker processes)
     -> nginx -s reopen  (Reopening log files)
+
+*) Command with systemctl:
+    -> systemctl status nginx
+    -> systemctl start nginx
