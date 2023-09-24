@@ -1,0 +1,50 @@
+*) Return & Rewrite:
+  -> EX: if previously your website name was 'www.roman.com' & now you change it to 'www.roman.org' then in that case you need to redirect request from old domain name to the new domain.
+  -> and you want to control the flow of you application and dynamically deliver the flow of your URI then also you can use return and rewrite.
+
+*) Demo:
+  -> EX: you have some images inside '<app_project_directory>/assets/images/about' path and when you will go to '/assets/images/about/<image_name>.png' url on browser you can be able to get the image, but if you don't want to expose the path of the directory '/assets/images/about' for the client where assets are stored.
+    events {
+
+    }
+
+    http {
+            include mime.types;
+
+            server{
+                    listen 80;
+                    server_name 34.68.170.207;
+
+                    root /app/;
+
+                    location /image {
+                            return 301 /assets/images/about/welcome-banner.jpg;
+                            # now whenever client will request on '/image' path we will return(redirect) to the path '/assets/images/about/welcome-banner.jpg'
+                    }
+
+                    rewrite ^/guest/\w+ /welcome;
+                    # so here we are defining that when someone hits on '/guest/<accept_any_word>' then it will redirect with the '/welcome'
+
+                    location /welcome {
+                            return 301 /assets/images/about/welcome-banner.jpg;
+                            # now now here we are redirecting to the another path
+                    }
+
+                    # but on above example of 'return' and 'rewrite' we can see that the complete URI path is exposed to the client because we are just redirect to the path
+
+                    rewrite ^/account/(\w+) /name/$1;
+                    # rewrite '/account/<accept_any_word_and_taking_that_word_as_parameter>' '/name/<parameter_that_we_pass_on_(\w+)_comes_here>'
+                    location /name/roman {
+                            # now if that parameter that we get from '(\w+)' is 'roman' then we will come under this context
+                            return 307 "This is roman";
+                    }
+
+                    rewrite ^/user/(\w+) /profile/$1;
+                    location = /profile/roman {
+                            # now here if client hits on '/user/roman' they will not get redirect to '/profile/roman' but this context is accepted
+                            return 200 "Hello roman from profile";
+                    }
+
+            }
+
+    }

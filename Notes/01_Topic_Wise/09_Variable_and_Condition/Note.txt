@@ -12,6 +12,8 @@
     ➤ $hostname - Host name . 
     ➤ $nginx_version - Shows the nginx version.
 
+  -> List of all the inbuilt variables that are available: http://nginx.org/en/docs/varindex.html
+
 
 *) Demo:
   events {
