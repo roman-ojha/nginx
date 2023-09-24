@@ -1,1 +1,85 @@
--> https://youtu.be/NwijBVfiK_o?t=9083
+*) Location Block Context:
+  -> https://docs.nginx.com/nginx/admin-guide/web-server/web-server/#configuring-locations
+  *) Location Match:
+      Defines what Nginx should check the request URI against.
+      ➤ The existence or nonexistence of the modifier, affects the way that the Nginx attempts to 
+      match the location block. 
+      ➤ The modifiers below will cause the associated location block to be interpreted as follows: 
+        ➤ (none): If no modifiers are present, the location is interpreted as a prefix match. This 
+        means that the location given will be matched against the beginning of the request 
+        URI to determine a match. 
+        ➤ =: If an equal sign is used, this block will be considered a match if the request URI 
+        exactly matches the location given. 
+        ➤ ~: If a tilde modifier is present, this location will be interpreted as a case-sensitive 
+        regular expression match. 
+        ➤ ~*: If a tilde and asterisk modifier is used, the location block will be interpreted as a 
+        case-insensitive regular expression match. 
+        ➤ ^~: If a carat and tilde modifier is present, and if this block is selected as the best 
+        non-regular expression match, regular expression matching will not take place.
+
+  *) Priority of Modifiers:
+      -> Nginx chooses the location that will be used to serve a request in a similar fashion to how it selects a  server block. It runs through a process that determines the best location block for any given request. 
+      -> Understanding this process is a crucial requirement in being able to configure Nginx reliably and accurately. 
+        1. Exact Match = URI 
+        2. Preferential Prefix Match ^~ URI 
+        3. REGEX Match. ~* URI
+
+*) Demo:
+  *) (none) modifier example:
+    -> we will now write a location for '/contactus' url:
+      http {
+              include mime.types;
+
+              server{
+                      listen 80;
+                      server_name 34.68.170.207;
+
+                      root /app/;
+
+                      location /contactus { 
+                              return 200 "Hello! you are inside custom location!!!";
+                              # here on '/contactus' we are just returning 200 status with text message
+                      }
+              }
+
+      }
+      -> Now if we will go to '/contactus', '/contactus/about', etc..., we will going to get the same result
+      -> it means if it match the context with URI '/contactus' with any number of followup URI it will match and return the context.
+
+  *) '=' modifier example:
+    events {
+
+      }
+
+      http {
+              include mime.types;
+
+              server{
+                      listen 80;
+                      server_name 34.68.170.207;
+
+                      root /app/;
+
+                      location /contactus {
+                        return 200 "Hello! you are inside custom location!!!";
+                      }
+
+                      location = /contactus {
+                              return 200 "Hello! you are inside custom location!!!  Exact Match";
+                              # now only exact '/contactus' path will return this context
+                              # but if we will hit '/contactus/about/<path>' then it will hit above none modifier location context
+                              # it means that priority of exact '=' modifier is higher then none modifier
+                      }
+
+                      location ~ /user {
+                              return 200 "Hello! you are inside custom location!!! Regex Case Sensitive match";
+                              # now here if we will hit '/user' then it will return this context but if we will hit '/USER' then this will return 404
+                      }
+
+                      location ~* /profile {
+                              return 200 "Hello! you are inside custom location!!! Regex Case InSensitive match";
+                              # now if we will hit on '/profile' or '/PROFILE' this context will get returned
+                      }
+              }
+
+      }
