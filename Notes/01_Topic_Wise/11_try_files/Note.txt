@@ -1,0 +1,4 @@
+*) try_files:
+  -> The 'try_files' directive can be used to check whether the specified file or directory exists. 
+  -> NGINX makes an internal redirect if it does, or returns a specified status code if it doesn’t.
+  -> We can define 'try_files' inside 'location' or 'server' block.

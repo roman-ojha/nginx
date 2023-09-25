@@ -12,3 +12,5 @@
 *) Command with systemctl:
     -> systemctl status nginx
     -> systemctl start nginx
+    -> systemctl stop nginx
+    -> systemctl reload nginx
