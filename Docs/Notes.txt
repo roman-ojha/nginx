@@ -6,3 +6,35 @@
 		-> reload command will referesh the configuration on your running nginx process
 	-> systemctl restart nginx:
 		-> It will first stop the nginx and the start it and in that case if configuration file have some error then you mignt not be able to start the nginx process which may kill you web server.
+		
+*) Nginx ssh certificate for https request:
+	-> sudo apt install certbot python3-certbot-nginx
+	-> NOTE: that 80 & 443 port should be oppend by cloud provider or firewall so that we can do https or http request to the server, 80 port for http & 443 port for https request
+	-> NOTE: to objtain and install the certificate you can see on 'https://github.com/geekyshow1/GeekyShowsNotes/blob/main/nginx/SSL_Cert_Nginx.md'
+	-> Or to just create certificate so that you can install the certificate by yourself and configure it inside nginx by yourself in that case just create the certificate using
+		-> sudo certbot certonly --nginx -d <domain> -d www.<domain>
+
+	-> Nginx config filename: domain
+	server {
+        # ssl for https protocal
+        listen 443 ssl;
+        server_name journey.uk.to www.journey.uk.to;
+        ssl_certificate /etc/letsencrypt/live/journey.uk.to/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/journey.uk.to/privkey.pem;
+        location / {
+                proxy_pass http://0.0.0.0:8003;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+}
+
+server {
+        listen 80;
+        listen [::]:80;
+        root /var/www/html;
+        server_name journey.uk.to www.journey.uk.to;
+        return 301 https://$host$request_uri; # if user reqest on http then it will request to https
+}

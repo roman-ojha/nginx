@@ -8,6 +8,8 @@
     -> nginx -s quit    (Graceful shutdown)
     -> nginx -s reload  (Changing configuration, starting new worker processes with a new configuration, graceful shutdown of old worker processes)
     -> nginx -s reopen  (Reopening log files)
+    
+    -> sudo service nginx restart (to restart the nginx service)
 
 *) Command with systemctl:
     -> systemctl status nginx
