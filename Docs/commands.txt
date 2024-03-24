@@ -16,3 +16,9 @@
     -> systemctl start nginx
     -> systemctl stop nginx
     -> systemctl reload nginx
+
+*) Windows command:
+    -> cd <path to nginx>
+    -> start ./nginx.exe
+    -> ./nginx.exe -s <signal> (signal can be stop, quit, reload, reopen)
+    -> Ref: https://nginx.org/en/docs/windows.html
