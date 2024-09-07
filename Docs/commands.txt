@@ -8,6 +8,7 @@
     -> nginx -s quit    (Graceful shutdown)
     -> nginx -s reload  (Changing configuration, starting new worker processes with a new configuration, graceful shutdown of old worker processes)
     -> nginx -s reopen  (Reopening log files)
+    -> nginx -t (check the syntax error before reloading the nginx)
     
     -> sudo service nginx restart (to restart the nginx service)
 
